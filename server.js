@@ -16,19 +16,32 @@ mongoose.connect('mongodb+srv://rginsasis:rginsasis@rgincluster1.x8fst0r.mongodb
   .catch(err => console.error('❌ Could not connect to MongoDB...', err));
 
 // --- 2. Define the Database Schema & Model ---
+// --- 2. Define the Database Schema & Model ---
 const itemSchema = new mongoose.Schema({
     name: String,
     sku: String,
     qty: Number,
-    price: Number
+    price: Number,
+    company: String // <--- Added Company
 });
+
+itemSchema.set('toJSON', {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString();
+        delete returnedObject._id;
+        delete returnedObject.__v;
+    }
+});
+
+const Item = mongoose.model('Item', itemSchema);
 
 // --- History Database Schema ---
 const historySchema = new mongoose.Schema({
     date: String,
     itemName: String,
     itemSku: String,
-    qty: Number
+    qty: Number,
+    company: String // <--- Added Company
 });
 
 // Map MongoDB's internal "_id" to "id"
@@ -72,8 +85,6 @@ itemSchema.set('toJSON', {
         delete returnedObject.__v;
     }
 });
-
-const Item = mongoose.model('Item', itemSchema);
 
 // --- 3. API ENDPOINTS ---
 

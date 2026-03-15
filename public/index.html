@@ -11,6 +11,9 @@
         <div class="container header-content">
             <h1>📦 DynaMicro Stock Monitoring</h1>
         </div>
+        <div id="offline-banner" class="offline-banner hidden">
+        ⚠️ You are currently offline. Changes will be saved locally and synced when you reconnect.
+        </div>
     </header>
 
     <main class="container">
@@ -36,12 +39,16 @@
                     <input type="hidden" id="item-id">
                     <div class="form-group">
                         <label for="item-name">Item Name</label>
-                        <input type="text" id="item-name" required placeholder="e.g. Wireless Mouse">
+                        <input type="text" id="item-name" required placeholder="e.g. Base Plate">
                     </div>
                     <div class="form-group">
                         <label for="item-sku">Stock Code</label>
                         <input type="text" id="item-sku" placeholder="e.g. WM-001 (Optional)">
                     </div>
+                    <div class="form-group">
+                            <label for="item-company">Company</label>
+                            <input type="text" id="item-company" placeholder="e.g. TechCorp (Optional)">
+                        </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="item-qty">Quantity</label>
@@ -59,10 +66,15 @@
 
             <div class="tables-container">
                 <section class="table-section card" style="margin-bottom: 2rem;">
+                    <h2>Current Stock</h2>
                     <div class="table-header">
-                        <h2>Current Stock</h2>
-                        <div class="search-box">
-                            <input type="text" id="search-input" placeholder="Search by name or Stock Code...">
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; flex-grow: 1; justify-content: flex-end;">
+                            <div class="search-box" style="flex-grow: 2;">
+                                <input type="text" id="search-input" placeholder="Search by name...">
+                            </div>
+                            <select id="company-filter" style="padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; outline: none; flex-grow: 1; max-width: 200px;">
+                                <option value="">All Companies</option>
+                            </select>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -71,7 +83,7 @@
                                 <tr>
                                     <th>Stock Code</th>
                                     <th>Name</th>
-                                    <th>Qty</th>
+                                    <th>Company</th> <th>Qty</th>
                                     <th>Price</th>
                                     <th>Status</th>
                                     <th>Actions</th>
