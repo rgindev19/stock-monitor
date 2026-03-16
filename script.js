@@ -151,7 +151,7 @@ function renderTable() {
 
     // --- NEW: Trigger scrollbar specifically at 50 items ---
     const tableContainer = document.querySelector('.table-responsive');
-    if (filteredInventory.length >= 50) {
+    if (filteredInventory.length >= 20) {
         tableContainer.classList.add('scroll-active');
     } else {
         tableContainer.classList.remove('scroll-active');
@@ -169,7 +169,7 @@ function renderTable() {
         const statusText = isLowStock ? 'Low Stock' : 'In Stock';
         const displaySku = item.sku ? `<strong>${item.sku}</strong>` : '-';
         const displayCompany = item.company || '-';
-        const displayPrice = item.price ? `$${parseFloat(item.price).toFixed(2)}` : '-';
+        const displayPrice = item.price ? `${parseFloat(item.price).toFixed(2)}` : '-';
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
