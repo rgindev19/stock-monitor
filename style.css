@@ -303,3 +303,22 @@ th {
         padding: 1rem; /* Slightly less padding on mobile to save space */
     }
 }
+
+/* ========================================= */
+/* 📜 DYNAMIC 50-ITEM SCROLLBAR              */
+/* ========================================= */
+
+.scroll-active {
+    /* Set a max height so the table doesn't take over the whole screen */
+    max-height: 600px; 
+    overflow-y: auto;
+}
+
+/* Make the table header sticky so it stays visible while scrolling */
+.scroll-active th {
+    position: sticky;
+    top: 0;
+    background-color: #f8fafc; /* Keep the header solid */
+    z-index: 10;
+    box-shadow: 0 2px 4px -2px rgba(0,0,0,0.1); /* Adds a nice shadow under the header */
+}
